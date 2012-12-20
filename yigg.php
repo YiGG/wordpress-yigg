@@ -10,12 +10,7 @@
  Text Domain: yigg
 */
 
-/**
- * render admin stuff
- */
-function yigg_admin_page() {
-  
-}
+include("yigg-admin.php");
 
 /**
  * add the button to the content
@@ -26,7 +21,30 @@ function yigg_admin_page() {
 function yigg_extend_post($content) {
   $perma_link = get_permalink();
 	
-	return $content . yigg_generate_button($perma_link);
+  if (get_option("yigg_button_type") == "big") {
+    $type = "big";
+  } else {
+    $type = "small";
+  }
+  
+  $button = yigg_generate_button($perma_link, $type);
+  
+  $visibility = get_option("yigg_button_visibility");
+  if (!is_array($visibility)) {
+    $visibility = array();
+  }
+  
+  if ((is_single() && array_key_exists("posts", $visibility) && $visibility["posts"] == "show") ||
+      (is_page() && array_key_exists("pages", $visibility) &&  $visibility["pages"] == "show") ||
+      (!is_singular() && array_key_exists("home", $visibility) &&  $visibility["home"] == "show")) {
+    if (get_option("yigg_button_position") == "top") {
+      return $button . $content;
+    } else {
+      return $content . $button;
+    }
+  }
+  
+  return $content;
 }
 add_action("the_content", "yigg_extend_post");
 
@@ -38,8 +56,8 @@ add_action("the_content", "yigg_extend_post");
  */
 function yigg_button_shortcode($atts) {
 	extract( shortcode_atts( array(
-		'url' => '',
-		'type' => 'small',
+		'url' => get_permalink(),
+		'type' => 'simple',
 	), $atts ) );
 
 	return yigg_generate_button($url, $type);
