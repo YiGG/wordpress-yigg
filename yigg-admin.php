@@ -4,7 +4,7 @@ function yigg_add_settings_page() { ?>
   <div class="wrap">
   <h2>YiGG Settings</h2>
   
-  <p>bla</p>
+  <p>maunz!</p>
   
   <form method="post" action="options.php">
   <?php //wp_nonce_field('update-options'); ?>
