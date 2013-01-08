@@ -3,10 +3,11 @@
  Plugin Name: YiGG Button
  Plugin URI: http://wordpress.org/extend/plugins/yigg
  Description: Adds the yigg-button to your posts and pages
- Author: Matthias Pfefferle
+ Author: pfefferle
  Author URI: http://yigg.de/
  Version: 1.0.0
- License: 
+ License: GPLv3 or later
+ License URI: http://www.gnu.org/licenses/gpl-3.0.html
  Text Domain: yigg
 */
 
