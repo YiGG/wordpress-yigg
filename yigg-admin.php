@@ -9,8 +9,8 @@ function yigg_add_settings_page() { ?>
   <form method="post" action="options.php">
   <?php //wp_nonce_field('update-options'); ?>
   <!-- starting -->
-  <?php settings_fields('my_settings_group'); ?>
-  <?php do_settings_sections('my_settings_section'); ?>
+  <?php settings_fields('yigg_settings_group'); ?>
+  <?php do_settings_sections('yigg_settings_section'); ?>
   <!-- ending -->
   
   <?php
@@ -98,9 +98,9 @@ function yigg_add_settings_link( $links, $file ) {
 add_filter('plugin_action_links', 'yigg_add_settings_link', 10, 2);
 
 // keep WPMU happy
-function yigg_register_my_settings() {
-  register_setting('my_settings_group','yigg_button_type');
-  register_setting('my_settings_group','yigg_button_position');
-  register_setting('my_settings_group','yigg_button_visibility');
+function yigg_register_settings() {
+  register_setting('yigg_settings_group','yigg_button_type');
+  register_setting('yigg_settings_group','yigg_button_position');
+  register_setting('yigg_settings_group','yigg_button_visibility');
 }
-add_action('admin_init', 'yigg_register_my_settings');
+add_action('admin_init', 'yigg_register_settings');

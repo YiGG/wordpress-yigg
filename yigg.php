@@ -5,7 +5,7 @@
  Description: Adds the yigg-button to your posts and pages
  Author: pfefferle
  Author URI: http://yigg.de/
- Version: 1.0.0
+ Version: 1.0.1
  License: GPLv3 or later
  License URI: http://www.gnu.org/licenses/gpl-3.0.html
  Text Domain: yigg
