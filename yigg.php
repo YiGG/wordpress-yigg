@@ -80,7 +80,7 @@ function yigg_generate_button($url = "", $type = "small") {
 
 	$html = "<div class='yiggbutton'>
 	  <script> var yigg_url = '$url'; </script>
-    <script src='http://static.yigg.de/v6/js/embed_".$var."button.js'></script>
+    <script src='http://yigg.de/js/embed_".$var."button.js'></script>
   </div>";
 	
 	return $html;
