@@ -5,7 +5,7 @@
  Description: Adds the yigg-button to your posts and pages
  Author: pfefferle
  Author URI: http://yigg.de/
- Version: 1.0.1
+ Version: 1.0.2
  License: GPLv3 or later
  License URI: http://www.gnu.org/licenses/gpl-3.0.html
  Text Domain: yigg
@@ -21,30 +21,32 @@ include("yigg-admin.php");
  */
 function yigg_extend_post($content) {
   $perma_link = get_permalink();
-	
+
   if (get_option("yigg_button_type") == "big") {
     $type = "big";
   } else {
     $type = "small";
   }
-  
+
   $button = yigg_generate_button($perma_link, $type);
-  
+
   $visibility = get_option("yigg_button_visibility");
   if (!is_array($visibility)) {
     $visibility = array();
   }
-  
-  if ((is_single() && array_key_exists("posts", $visibility) && $visibility["posts"] == "show") ||
-      (is_page() && array_key_exists("pages", $visibility) &&  $visibility["pages"] == "show") ||
-      (!is_singular() && array_key_exists("home", $visibility) &&  $visibility["home"] == "show")) {
+
+  if (
+       (is_single() && array_key_exists("posts", $visibility) && $visibility["posts"] == "show") ||
+       (is_page() && array_key_exists("pages", $visibility) &&  $visibility["pages"] == "show") ||
+       (!is_singular() && array_key_exists("home", $visibility) &&  $visibility["home"] == "show")
+     ) {
     if (get_option("yigg_button_position") == "top") {
       return $button . $content;
     } else {
       return $content . $button;
     }
   }
-  
+
   return $content;
 }
 add_action("the_content", "yigg_extend_post");
@@ -82,6 +84,6 @@ function yigg_generate_button($url = "", $type = "small") {
 	  <script> var yigg_url = '$url'; </script>
     <script src='http://yigg.de/js/embed_".$var."button.js'></script>
   </div>";
-	
+
 	return $html;
 }
